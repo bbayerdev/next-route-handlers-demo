@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/db";
 
 export async function GET(req: NextRequest) {
-
     console.log(req.nextUrl.searchParams)
     return Response.json({ message: 'rodando' })
 }
@@ -16,7 +15,7 @@ export async function POST(req: Request) {
                 name
             }
         })
-        return Response.json({ message: "okkk", name })
+        return Response.json({ message: "criado", name })
 
     } catch (erro) {
         return NextResponse.json({
@@ -27,7 +26,4 @@ export async function POST(req: Request) {
             }
         )
     }
-
-
-
 }
