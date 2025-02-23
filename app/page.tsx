@@ -13,7 +13,6 @@ import { useRouter } from "next/navigation"
 
 export default function Home() {
   const router = useRouter()
-
   const { register, handleSubmit, formState: { errors } } = useForm<UserNameFormData>({
     resolver: zodResolver(formSchema)
   })
@@ -37,7 +36,7 @@ export default function Home() {
           duration: 2000,
         })
 
-        setTimeout(() =>{
+        setTimeout(() => {
           router.push('/dashboard')
         }, 2000)
       }
@@ -59,7 +58,7 @@ export default function Home() {
         <Button type="submit" variant={'secondary'} className="w-1/3 mt-3">
           {loading ? (
             <>
-            <LoaderCircle className="animate-spin"/>
+              <LoaderCircle className="animate-spin" />
             </>
           ) : (
             <>
