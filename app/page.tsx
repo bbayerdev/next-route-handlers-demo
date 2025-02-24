@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "@/hooks/use-toast"
 import { Toaster } from "@/components/ui/toaster"
 import { useState } from "react"
-import { LoaderCircle } from "lucide-react"
+import { Loader } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 export default function Home() {
@@ -58,7 +58,7 @@ export default function Home() {
         <Button type="submit" variant={'secondary'} className="w-1/3 mt-3">
           {loading ? (
             <>
-              <LoaderCircle className="animate-spin" />
+              <Loader className="animate-spin" />
             </>
           ) : (
             <>
