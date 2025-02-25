@@ -1,10 +1,22 @@
 'use client'
-import { Loader } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Loader, Trash } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
+
 
 interface User {
     id: number
     name: string
+    createdIn: string
 }
 
 const page = () => {
@@ -24,15 +36,32 @@ const page = () => {
         <main className='flex flex-col justify-center items-center h-screen gap-2'>
 
             {users.length > 0 ? (
+
                 <div>
-                    <h1 className='text-2xl font-bold'>Users's list</h1>
-                    <ul>
-                        {users.map((user) => (
-                            <li key={user.id} className="p-2 border-b last:border-none">
-                                {user.name}
-                            </li>
-                        ))}
-                    </ul>
+                    <Table>
+                        <TableCaption>A list of all users</TableCaption>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead className="w-[100px]">ID</TableHead>
+                                <TableHead>Name</TableHead>
+                                <TableHead>Created in</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {users.map((user) => (
+                                <TableRow key={user.id}>
+                                    <TableCell className="font-medium">{user.id}</TableCell>
+                                    <TableCell>{user.name}</TableCell>
+                                    <TableCell>{new Date(user.createdIn).toLocaleDateString()}</TableCell>
+                                    <TableCell className="text-right">
+                                        <Button size={'icon'} variant={'ghost'} className='hover:bg-red-600/80'>
+                                            <Trash />
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
                 </div>
             ) : (
                 <div className='flex gap-2'>

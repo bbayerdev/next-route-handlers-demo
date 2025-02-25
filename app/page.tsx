@@ -8,8 +8,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "@/hooks/use-toast"
 import { Toaster } from "@/components/ui/toaster"
 import { useState } from "react"
-import { Loader } from "lucide-react"
+import { Loader, Search } from "lucide-react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 export default function Home() {
   const router = useRouter()
@@ -37,7 +38,7 @@ export default function Home() {
         })
 
         setTimeout(() => {
-          router.push('/dashboard')
+          router.push('/users')
         }, 2000)
       }
     }
@@ -55,17 +56,25 @@ export default function Home() {
         {errors.name && (<p className="text-red-500 text-sm">{errors.name.message}</p>)}
         <Label className="text-neutral-500">This is your public display name.</Label>
 
-        <Button type="submit" variant={'secondary'} className="w-1/3 mt-3">
-          {loading ? (
-            <>
-              <Loader className="animate-spin" />
-            </>
-          ) : (
-            <>
-              Send
-            </>
-          )}
-        </Button>
+        <div className="flex mt-3 justify-between">
+          <Button type="submit" variant={'secondary'} className="w-1/3">
+            {loading ? (
+              <>
+                <Loader className="animate-spin" />
+              </>
+            ) : (
+              <>
+                Send
+              </>
+            )}
+          </Button>
+
+          <Button type="button" variant={'outline'} asChild>
+            <Link href={'/users'}>
+              <Search /> See users
+            </Link>
+          </Button>
+        </div>
       </form>
       <Toaster />
     </main>
